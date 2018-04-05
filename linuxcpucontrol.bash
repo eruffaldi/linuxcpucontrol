@@ -1,3 +1,13 @@
+function cpucount()
+{
+    ls -l /sys/devices/system/cpu | grep -E "cpu[0-9]+" | wc -l 
+}
+
+function activecpucount()
+{
+    cat /proc/cpuinfo| grep processor | wc -l
+}
+
 function setgov ()
 {
 	count = $(grep -c ^processor /proc/cpuinfo)
