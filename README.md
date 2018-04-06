@@ -12,7 +12,7 @@
 ## cpusets
 	
 Setup isolating 1 from rest
-
+```
  allcpus=$( ls -l /sys/devices/system/cpu | grep -E "cpu[0-9]+" | wc -l )
  allcpus0=$(($allcpus-1))
  mkdir /dev/cpuset
@@ -32,14 +32,14 @@ Setup isolating 1 from rest
 
  /bin/echo 0 > core1/cpuset.cpu_exclusive
  /bin/echo 1-$allcpus0 > all/cpuset.cpus
-
+```
 
 Then move all existing tasks to cpuset core1 using all2cpuset.sh
-
+```
    for i in `ps -eLfad |awk '{ print $4 } '|grep -v PID | xargs echo `; do 
 	   /bin/echo $i > /dev/cpuset/$1/tasks
 	done
-
+```
 # Old Notes 
 
 ## Prevent Scheduler using CPU
